@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Френч Лаб · Ногтевая студия в Челябинске</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #fdf8f6;
+    --bg-soft: #f7efe9;
+    --accent: #c9a08a;
+    --accent-dark: #a87c65;
+    --text: #3d322e;
+    --text-soft: #6b5d57;
+    --white: #ffffff;
+    --radius: 16px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+  }
+  h1, h2, h3, .logo {
+    font-family: 'Playfair Display', serif;
+    font-weight: 600;
+  }
+  a { color: inherit; text-decoration: none; }
+  .container { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+
+  header {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(253,248,246,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid #efe6e0;
+  }
+  .header-inner {
+    display: flex; align-items: center; justify-content: space-between;
+    height: 72px;
+  }
+  .logo { font-size: 1.45rem; letter-spacing: -0.5px; }
+  .logo span { color: var(--accent); font-weight: 400; font-style: italic; }
+  nav { display: flex; gap: 28px; font-size: 0.95rem; }
+  nav a { color: var(--text-soft); transition: color .2s; }
+  nav a:hover { color: var(--accent-dark); }
+  .header-actions { display: flex; align-items: center; gap: 16px; }
+  .phone { font-weight: 500; }
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    background: var(--accent); color: white; padding: 12px 22px;
+    border-radius: 999px; font-weight: 500; transition: all .2s;
+    border: none; cursor: pointer; font-size: 0.95rem;
+  }
+  .btn:hover { background: var(--accent-dark); transform: translateY(-1px); }
+  .btn-outline {
+    background: transparent; color: var(--accent-dark);
+    border: 1.5px solid var(--accent);
+  }
+  .btn-outline:hover { background: var(--accent); color: white; }
+
+  .hero {
+    display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 48px;
+    align-items: center; padding: 80px 0 60px;
+  }
+  .hero-badge {
+    display: inline-block; color: var(--accent); font-size: 0.9rem;
+    letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 12px;
+  }
+  .hero h1 {
+    font-size: 3.2rem; line-height: 1.15; margin-bottom: 20px;
+    font-weight: 600;
+  }
+  .hero p { font-size: 1.1rem; color: var(--text-soft); margin-bottom: 28px; max-width: 520px; }
+  .hero-stats {
+    display: flex; gap: 24px; margin-top: 32px; font-size: 0.9rem; color: var(--text-soft); flex-wrap: wrap;
+  }
+  .hero-stats strong { display: block; color: var(--text); font-size: 1.1rem; }
+  .hero-img {
+    border-radius: 24px; overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+  }
+  .hero-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+  section { padding: 80px 0; }
+  .section-title { text-align: center; margin-bottom: 48px; }
+  .section-title h2 { font-size: 2.4rem; margin-bottom: 12px; }
+  .section-title p { color: var(--text-soft); max-width: 560px; margin: 0 auto; }
+
+  .price-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px;
+  }
+  .price-card {
+    background: white; border-radius: var(--radius); padding: 28px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+    border: 1px solid #f0e6e0;
+  }
+  .price-card h3 { font-size: 1.35rem; margin-bottom: 8px; }
+  .price-from { color: var(--accent); font-weight: 600; margin-bottom: 16px; }
+  .price-item {
+    display: flex; justify-content: space-between; padding: 10px 0;
+    border-bottom: 1px dashed #eee; font-size: 0.95rem;
+  }
+  .price-item:last-child { border: none; }
+  .price-item span:last-child { font-weight: 500; color: var(--accent-dark); }
+
+  .included {
+    background: var(--bg-soft); border-radius: 24px; padding: 48px;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 40px;
+  }
+  .included ul { list-style: none; }
+  .included li { padding: 8px 0 8px 28px; position: relative; }
+  .included li:before {
+    content: "✓"; position: absolute; left: 0; color: var(--accent); font-weight: bold;
+  }
+
+  .booking-box {
+    background: white; border-radius: 24px; padding: 40px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.06); max-width: 640px; margin: 0 auto;
+  }
+  .form-group { margin-bottom: 20px; }
+  label { display: block; font-weight: 500; margin-bottom: 8px; font-size: 0.9rem; }
+  select, input, textarea {
+    width: 100%; padding: 14px 16px; border: 1.5px solid #e8ddd6;
+    border-radius: 12px; font-family: inherit; font-size: 1rem; background: #fdfcfb;
+  }
+  select:focus, input:focus, textarea:focus {
+    outline: none; border-color: var(--accent);
+  }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  #wa-message { font-size: 0.9rem; color: var(--text-soft); margin: 16px 0; min-height: 48px; }
+
+  .gallery {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+  }
+  .gallery img { width: 100%; height: 320px; object-fit: cover; border-radius: 16px; }
+
+  .faq-item {
+    background: white; border-radius: 12px; margin-bottom: 12px;
+    border: 1px solid #f0e6e0; overflow: hidden;
+  }
+  .faq-q {
+    padding: 18px 24px; font-weight: 500; cursor: pointer;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .faq-a { padding: 0 24px 18px; color: var(--text-soft); display: none; }
+  .faq-item.open .faq-a { display: block; }
+
+  footer {
+    background: #2c2421; color: #e8ddd6; padding: 60px 0 30px; margin-top: 40px;
+  }
+  .footer-grid {
+    display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 40px; margin-bottom: 40px;
+  }
+  .footer-grid h4 { color: white; margin-bottom: 16px; font-size: 1.1rem; }
+  .footer-bottom { text-align: center; padding-top: 24px; border-top: 1px solid #3d342f; font-size: 0.85rem; color: #a89b95; }
+
+  @media (max-width: 900px) {
+    .hero, .included, .gallery, .footer-grid { grid-template-columns: 1fr; }
+    .hero h1 { font-size: 2.4rem; }
+    nav { display: none; }
+    .form-row { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container header-inner">
+    <div class="logo">Френч <span>Лаб</span></div>
+    <nav>
+      <a href="#prices">Прайс</a>
+      <a href="#included">Что входит</a>
+      <a href="#booking">Запись</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <div class="header-actions">
+      <a href="tel:+79048021337" class="phone">+7 (904) 802-13-37</a>
+      <a href="#booking" class="btn">Записаться</a>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container" style="display:contents;">
+    <div>
+      <div class="hero-badge">Ногтевая студия · Челябинск</div>
+      <h1>Маникюр, наращивание и френч в Челябинске</h1>
+      <p>Студия релакса и комфорта с индивидуальным подходом. Цены называем до записи. Работаем ежедневно с 10:00 до 20:00 по предварительной записи.</p>
+      <div style="display:flex; gap:12px; flex-wrap:wrap;">
+        <a href="#booking" class="btn">Записаться онлайн</a>
+        <a href="#prices" class="btn btn-outline">Смотреть прайс</a>
+      </div>
+      <div class="hero-stats">
+        <div><strong>5,0</strong> на Яндекс.Картах · 47 отзывов</div>
+        <div><strong>10:00–20:00</strong> ежедневно</div>
+        <div><strong>Артиллерийская, 117</strong> корп. 4, 2 этаж</div>
+      </div>
+    </div>
+    <div class="hero-img">
+      <img src="imagine_images/french1.jpg" alt="Френч маникюр">
+    </div>
+  </div>
+</section>
+
+<section id="prices">
+  <div class="container">
+    <div class="section-title">
+      <h2>Прайс</h2>
+      <p>Цены указаны диапазоном «от и до». Точную стоимость назовём при записи в зависимости от мастера, длины и сложности.</p>
+    </div>
+    <div class="price-grid">
+      <div class="price-card">
+        <h3>Гель-лак</h3>
+        <div class="price-from">от 1 300 ₽</div>
+        <div class="price-item"><span>Камуфляж / нюд</span><span>1 300–2 100 ₽</span></div>
+        <div class="price-item"><span>С цветом</span><span>1 500–2 500 ₽</span></div>
+        <div class="price-item"><span>Время</span><span>≈ 1,5 часа</span></div>
+      </div>
+      <div class="price-card">
+        <h3>Укрепление гелем</h3>
+        <div class="price-from">от 1 800 ₽</div>
+        <div class="price-item"><span>Камуфляж / нюд</span><span>1 800–2 600 ₽</span></div>
+        <div class="price-item"><span>С цветом</span><span>2 000–3 000 ₽</span></div>
+        <div class="price-item"><span>Свободный край >10 мм</span><span>+500 ₽</span></div>
+      </div>
+      <div class="price-card">
+        <h3>Наращивание и дизайн</h3>
+        <div class="price-from">от 2 300 ₽</div>
+        <div class="price-item"><span>Наращивание камуфляж / нюд</span><span>2 300–3 100 ₽</span></div>
+        <div class="price-item"><span>Наращивание с цветом</span><span>2 500–3 500 ₽</span></div>
+        <div class="price-item"><span>Френч</span><span>+500 ₽</span></div>
+        <div class="price-item"><span>Градиент</span><span>+700 ₽</span></div>
+      </div>
+      <div class="price-card">
+        <h3>Экспресс-педикюр</h3>
+        <div class="price-from">от 1 400 ₽</div>
+        <div class="price-item"><span>Без покрытия</span><span>1 400–2 200 ₽</span></div>
+        <div class="price-item"><span>С гель-лаком</span><span>2 000–2 800 ₽</span></div>
+        <div class="price-item"><span>С плёнками</span><span>2 400–3 200 ₽</span></div>
+      </div>
+    </div>
+    <p style="text-align:center; margin-top:24px; color:var(--text-soft); font-size:0.9rem;">Дополнительный дизайн: втирка +300 ₽, кошачий глаз +200 ₽, стемпинг / роспись от 100 ₽ за палец, стразы / слайдеры от 50 ₽.</p>
+  </div>
+</section>
+
+<section id="included">
+  <div class="container">
+    <div class="included">
+      <div>
+        <h2 style="margin-bottom:20px;">Что входит в цену</h2>
+        <ul>
+          <li>Снятие предыдущего покрытия</li>
+          <li>Комбинированный маникюр</li>
+          <li>Выравнивание базой / укрепление твёрдым гелем</li>
+          <li>Покрытие гель-лаком (однотонное или несколько цветов)</li>
+          <li>Топ на выбор</li>
+        </ul>
+      </div>
+      <div>
+        <h2 style="margin-bottom:20px;">Отдельно</h2>
+        <ul>
+          <li>Дизайн (френч, градиент, втирка и др.)</li>
+          <li>Экспресс-педикюр — без обработки стопы</li>
+          <li>Мужской ногтевой сервис и брови — по записи</li>
+          <li>Новым клиентам — специальные предложения</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="booking" style="background: linear-gradient(to bottom, var(--bg), #fff);">
+  <div class="container">
+    <div class="section-title">
+      <h2>Онлайн-запись</h2>
+      <p>Выберите услугу, день и время — сообщение в WhatsApp сформируется автоматически. Также можно записаться через Dikidi.</p>
+    </div>
+    <div class="booking-box">
+      <div class="form-group">
+        <label>Услуга</label>
+        <select id="service">
+          <option value="Гель-лак (от 1 300 ₽)">Гель-лак — от 1 300 ₽</option>
+          <option value="Укрепление гелем (от 1 800 ₽)">Укрепление гелем — от 1 800 ₽</option>
+          <option value="Наращивание (от 2 300 ₽)">Наращивание — от 2 300 ₽</option>
+          <option value="Экспресс-педикюр (от 1 400 ₽)">Экспресс-педикюр — от 1 400 ₽</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>День</label>
+          <select id="day">
+            <option>Сегодня</option>
+            <option>Завтра</option>
+            <option>Послезавтра</option>
+            <option>На следующей неделе</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Время</label>
+          <select id="time">
+            <option>10:00</option><option>11:00</option><option>12:00</option>
+            <option>13:00</option><option>14:00</option><option>15:00</option>
+            <option>16:00</option><option>17:00</option><option>18:00</option>
+            <option>19:00</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Комментарий (необязательно)</label>
+        <textarea id="comment" rows="2" placeholder="Например: хочу нюд с френчем"></textarea>
+      </div>
+      <div id="wa-message">Здравствуйте! Хочу записаться: Гель-лак (от 1 300 ₽), сегодня в 10:00.</div>
+      <a id="wa-btn" class="btn" style="width:100%; margin-bottom:12px;" href="#" target="_blank">Записаться в WhatsApp</a>
+      <a class="btn btn-outline" style="width:100%;" href="http://dikidi.ru/1637065" target="_blank">Записаться через Dikidi</a>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="section-title">
+      <h2>Наши работы</h2>
+      <p>Примеры френча и нюдовых покрытий</p>
+    </div>
+    <div class="gallery">
+      <img src="imagine_images/french1.jpg" alt="Френч маникюр">
+      <img src="imagine_images/nude1.jpg" alt="Нюдовый маникюр">
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="container">
+    <div class="section-title">
+      <h2>Частые вопросы</h2>
+    </div>
+    <div class="faq-item open">
+      <div class="faq-q">От чего зависит цена внутри диапазона? <span>−</span></div>
+      <div class="faq-a">От мастера, длины ногтей и сложности. Например, наращивание с френчем у разных мастеров может отличаться. Точную цену администратор назовёт при записи.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Сколько длится процедура? <span>+</span></div>
+      <div class="faq-a">Гель-лак и экспресс-педикюр — около 1,5 часа. Укрепление гелем и наращивание — 1,5–2,5 часа.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">У меня есть фото дизайна, как узнать цену? <span>+</span></div>
+      <div class="faq-a">Отправьте фото администратору в WhatsApp. Студия назовёт точную стоимость и порекомендует мастера.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Как можно оплатить? <span>+</span></div>
+      <div class="faq-a">Банковским переводом и наличными.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Можно ли прийти с животным? <span>+</span></div>
+      <div class="faq-a">Нет, посещение с животными запрещено.</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="logo" style="color:white; margin-bottom:12px;">Френч Лаб</div>
+        <p>Ногтевая студия в Челябинске. Маникюр, укрепление, наращивание, френч и экспресс-педикюр.</p>
+      </div>
+      <div>
+        <h4>Контакты</h4>
+        <p>Артиллерийская ул., 117, корп. 4, 2 этаж<br>Челябинск, Тракторозаводский район</p>
+        <p style="margin-top:8px;">+7 (904) 802-13-37</p>
+        <p style="margin-top:8px;"><a href="http://dikidi.ru/1637065" target="_blank">Запись через Dikidi</a></p>
+      </div>
+      <div>
+        <h4>Часы работы</h4>
+        <p>Ежедневно<br>10:00 – 20:00<br>по предварительной записи</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © 2026 Френч Лаб · Челябинск
+    </div>
+  </div>
+</footer>
+
+<script>
+  const service = document.getElementById('service');
+  const day = document.getElementById('day');
+  const time = document.getElementById('time');
+  const comment = document.getElementById('comment');
+  const msgEl = document.getElementById('wa-message');
+  const waBtn = document.getElementById('wa-btn');
+
+  function updateMessage() {
+    let text = `Здравствуйте! Хочу записаться: ${service.value}, ${day.value.toLowerCase()} в ${time.value}.`;
+    if (comment.value.trim()) text += ` ${comment.value.trim()}`;
+    msgEl.textContent = text;
+    const phone = '79048021337';
+    waBtn.href = `https://wa.me/${phone}?text=${encodeURIComponent(text)}`;
+  }
+
+  [service, day, time, comment].forEach(el => el.addEventListener('input', updateMessage));
+  updateMessage();
+
+  document.querySelectorAll('.faq-q').forEach(q => {
+    q.addEventListener('click', () => {
+      const item = q.parentElement;
+      item.classList.toggle('open');
+      q.querySelector('span').textContent = item.classList.contains('open') ? '−' : '+';
+    });
+  });
+</script>
+
+</body>
+</html>
